@@ -6,9 +6,7 @@ services:
   - docker
 
 before_script: pip install docker-compose
-if [[ $TRAVIS_PYTHON_VERSION = *-dev ]]; then
-  printf '\n\n    CONSTANT = ignore\n' >> $VIRTUAL_ENV/lib/python*/site-packages/pyflakes/checker.py;
-fi
+
 
 script:
   - docker-compose run app sh -c "python manage.py test && flake8"
